@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "mypassword"
+    restart: always
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+volumes:
+  sqlserver_data:
+    driver: local
+    
+# "DefaultConnection": "Host=localhost;Port=3306;Database=mydatabase;Username=myuser;Password=mypassword"
